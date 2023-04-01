@@ -11,7 +11,7 @@ app.use(express.json());
 const listRouter = require("./routes/lists");
 app.use("/lists", listRouter);
 
-const taskRouter = require("./routes/lists");
+const taskRouter = require("./routes/tasks");
 app.use("/lists", taskRouter);
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then((result) => {

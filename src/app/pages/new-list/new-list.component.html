@@ -1,0 +1,26 @@
+<div class="centered-content">
+    <div class="model-box ">
+    <h1 class="title">
+        Create a new list
+    </h1>
+
+    <div class="field ">
+        <p class="control is-expanded">
+            <input #listTitleInput class="input" type="text" placeholder="Enter new list Title">
+        </p>
+        <div class="button-group">
+            <p class="control">
+              <button class="btn btn-primary"(click)="createList(listTitleInput.value) " > Create</button>
+            </p>
+            <p class="control">
+                <button routerLink="/task-view" class="btn btn-primary"> ← Go back</button>
+              </p>
+            
+          </div>
+    </div>
+
+    
+
+    </div>
+    
+</div>

@@ -20,3 +20,5 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).
         console.log("Server running");
     });
 }).catch((err) => console.log(err));
+
+console.log("Ami chakri pabo na")

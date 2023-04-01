@@ -22,3 +22,4 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).
 }).catch((err) => console.log(err));
 
 console.log("Ami chakri pabo na")
+console.log("kire");

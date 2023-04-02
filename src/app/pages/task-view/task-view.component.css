@@ -7,6 +7,7 @@
     /* change height to viewport height */
 }
 
+
 .task-manager-container {
     display: flex;
     width: 100%;
@@ -21,10 +22,10 @@
     display: flex;
     flex-direction: column;
 
-    width: 250px;
+    width: 33%;
     background: white;
 
-    padding: 42px;
+    padding: 2%;
 
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -35,15 +36,15 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding: 42px;
-    width: 700px;
+    padding: 5%;
+    width: 60%;
     /* increase the width */
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
 
 .task-list-container .top-bar {
-    margin-bottom: 20px;
+    margin-bottom: 3%;
     display: flex;
 }
 
@@ -55,18 +56,23 @@
 .list-menu {
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
+    margin-top: 8%;
     flex-grow: 1;
+    text-align: center;
 }
 
 .list-menu .list-menu-item {
+    text-align: center;
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    padding: 2%;
     border-radius: 5px;
     width: 100%;
     color: #5f5f5f;
-    margin-bottom: 5px;
+    margin: 2%;
+    padding-left: 6%;
+
+
     cursor: pointer;
 }
 
@@ -75,16 +81,16 @@
 }
 
 .list-menu .list-menu-item.is-active {
-    background-color: #cff8ef;
-    color: rgb(0, 100, 80);
+    background-color: #c27ee465;
+    color: rgb(172, 111, 213);
 }
 
 .task {
     display: flex;
     background: white;
-    padding: 15px 20px;
+    padding: 2% 3%;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 3%;
     align-items: center;
 }
 
@@ -135,4 +141,12 @@
     font-size: 20px;
     color: #777;
     text-align: center;
+}
+
+.btn {
+    background-color: rgba(135, 41, 193, 0.77)
+}
+
+h1 {
+    color: rgba(114, 16, 175, 0.77);
 }

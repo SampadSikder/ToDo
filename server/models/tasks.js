@@ -13,13 +13,16 @@ const TaskSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        required: true,
         minlength: 1,
         trim: true
     },
     completed: {
         type: Boolean,
         default: false
+    },
+    dueDate: {
+        type: Date,
+        required: true
     }
 })
 

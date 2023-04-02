@@ -27,7 +27,8 @@ router.post('/:listId/tasks', async (req, res) => {
                 title: req.body.title,
                 _listId: req.params.listId,
                 category: req.body.category,
-                completed: req.body.completed
+                completed: req.body.completed,
+                dueDate: req.body.dueDate
             });
             newTask.save().then((newTaskDoc) => {
                 res.send(newTaskDoc);

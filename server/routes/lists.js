@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
         title
     });
     await newList.save().then((listdoc) => {
-        res.send(listdoc)
+        res.json(listdoc);
     });
 })
 
@@ -33,7 +33,7 @@ router.delete('/:id', async (req, res) => {
 
     List.findOneAndRemove({
         _id: req.params.id,
-        _userId: req.user_id
+        //_userId: req.user_id
     }).then((removedListDoc) => {
         res.send(removedListDoc);
         deleteTasksFromList(removedListDoc._id);

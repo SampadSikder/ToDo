@@ -26,7 +26,6 @@ router.post('/:listId/tasks', async (req, res) => {
             let newTask = new Task({
                 title: req.body.title,
                 _listId: req.params.listId,
-                category: req.body.category,
                 completed: req.body.completed,
                 dueDate: req.body.dueDate
             });
@@ -40,6 +39,7 @@ router.post('/:listId/tasks', async (req, res) => {
 });
 
 router.patch('/:listId/tasks/:taskId', async (req, res) => {
+    console.log("edit");
     await List.findOne({
         _id: req.params.listId,
         _userId: req.user_id
@@ -68,7 +68,7 @@ router.patch('/:listId/tasks/:taskId', async (req, res) => {
 router.delete('/:listId/tasks/:taskId', async (req, res) => {
     await List.findOne({
         _id: req.params.listId,
-        _userId: req.user_id
+        //_userId: req.user_id
     }).then((list) => {
         if (list) {
             return true;

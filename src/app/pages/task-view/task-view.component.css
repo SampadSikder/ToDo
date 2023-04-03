@@ -94,6 +94,21 @@
     align-items: center;
 }
 
+.search {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.search input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+}
+
 .task:not(.complete) {
     cursor: pointer;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -150,4 +165,52 @@
 
 h1 {
     color: rgba(114, 16, 175, 0.77);
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deadline {
+    text-align: right;
+}
+
+.edit-btn,
+.delete-btn,
+.done-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: #ccc;
+    color: #fff;
+}
+
+.task.complete .edit-btn,
+.task.complete .done-btn {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.delete-btn {
+    background-color: #931400;
+    color: white;
+}
+
+.done-btn {
+    background-color: #008134;
+    color: white;
+}
+
+.sidebar,
+.task-list-container {
+    overflow: auto;
 }

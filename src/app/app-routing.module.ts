@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { TaskViewComponent } from './pages/task-view/task-view.component';
 import { NewListComponent } from './pages/new-list/new-list.component';
+import { NewTaskComponent } from './pages/new-task/new-task.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -11,7 +12,9 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'task-view', component: TaskViewComponent },
   { path: 'new-list', component: NewListComponent },
-  { path: 'lists/:listId', component: TaskViewComponent }
+  { path: 'lists/:listId', component: TaskViewComponent },
+  { path: 'new-task', component: NewTaskComponent },
+  { path: 'lists/:listId/new-task', component: NewTaskComponent }
 ];
 
 @NgModule({

@@ -6,15 +6,19 @@
                 <h1 class="title text-info">
                     Lists
                 </h1>
+
+                <div class="search">
+                    <input type="text" placeholder="Search...">
+                    <button class="btn">Search</button>
+                </div>
                 <div class="list-menu">
                     <a class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists',list._id]"
                         routerLinkActive="is-active">
-
                         <p>{{list.title}}</p>
                     </a>
                 </div>
 
-                <button class="btn btn-primary"> + New List</button>
+                <button class="btn btn-primary" routerLink="/new-list"> + New List</button>
 
 
             </div>
@@ -22,10 +26,39 @@
                 <h1 class="title text-info">
                     Tasks
                 </h1>
-                <!-- Task elements-->
-                <div class="task" *ngFor="let task of tasks">
-                    <p> {{task.title}}</p>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Settings
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                        <div class="dropdown-content">
+                            <a class="dropdown-item">
+                                Edit
+                            </a>
+                            <a class="dropdown-item text-danger" (click)="onListDelete()">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
                 </div>
+                <!-- Task elements-->
+                <div class="task" *ngFor="let task of tasks" [ngClass]="{'complete':task.completed}">
+                    <p> {{task.title}}</p>
+                    <div class="deadline">
+                        <pre>
+                        <pre class="text-danger">Deadline:</pre>{{ task.dueDate | date:'yyyy-MM-dd' }}</pre>
+
+                        <div class="buttons">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn" (click)="onTaskDelete(task)">Delete</button>
+                            <button class="done-btn" (click)="onTaskClick(task)">Done</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary "> <a routerLink="./new-task" class=" text-white text-decoration-none">+
+                        New Task</a> </button>
             </div>
 
 

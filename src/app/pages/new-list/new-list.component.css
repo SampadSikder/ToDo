@@ -1,0 +1,36 @@
+.centered-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    /* change height to viewport height */
+}
+
+
+.model-box {
+    min-height: 25%;
+    width: 40%;
+
+    background: white;
+    border-radius: 4%;
+    padding: 2%;
+}
+
+.input {
+    width: 70%;
+}
+
+.button.is-danger {
+    background-color: rgba(159, 159, 159, 0.77);
+    color: white;
+    border-color: rgba(159, 159, 159, 0.37);
+    margin-left: .5%;
+}
+
+.button.is-success {
+    background-color: rgba(135, 41, 193, 0.77);
+    color: white;
+    border-color: rgba(135, 41, 193, 0.376);
+    margin-left: 1%;
+}

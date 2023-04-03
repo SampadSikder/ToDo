@@ -112,9 +112,9 @@
     transform: scale(1);
 }
 
-.task.complete .task-text {
+.task.complete p {
     text-decoration: line-through;
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 .task .task-text {
@@ -144,7 +144,8 @@
 }
 
 .btn {
-    background-color: rgba(135, 41, 193, 0.77)
+    background-color: rgba(135, 41, 193, 0.77);
+    color: white
 }
 
 h1 {

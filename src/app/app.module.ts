@@ -15,7 +15,9 @@ import { NewTaskComponent } from './pages/new-task/new-task.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { FormsModule } from '@angular/forms';
-
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { TaskEditComponent } from './pages/task-edit/task-edit.component';
+import { ListEditComponent } from './pages/list-edit/list-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,8 @@ import { FormsModule } from '@angular/forms';
     TaskViewComponent,
     NewListComponent,
     NewTaskComponent,
+    TaskEditComponent,
+    ListEditComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import { FormsModule } from '@angular/forms';
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbDropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

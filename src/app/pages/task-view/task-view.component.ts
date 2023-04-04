@@ -100,6 +100,10 @@ export class TaskViewComponent implements OnInit {
     }, 100);
   }
 
+  onLogout() {
+    this.router.navigate(['/login']);
+  }
+
   reloadComponent() {
     const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {

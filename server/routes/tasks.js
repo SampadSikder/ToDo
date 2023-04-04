@@ -12,6 +12,14 @@ router.get("/:listId/tasks", async (req, res) => {
     });
 });
 
+router.get("/:listId/tasks/:taskId", async (req, res) => {
+    await Task.findOne({
+        _id: req.params.taskId
+    }).then((response) => {
+        res.json(response);
+    });
+});
+
 router.post('/:listId/tasks', async (req, res) => {
     await List.findOne({
         _id: req.params.listId,
@@ -39,7 +47,6 @@ router.post('/:listId/tasks', async (req, res) => {
 });
 
 router.patch('/:listId/tasks/:taskId', async (req, res) => {
-    console.log("edit");
     await List.findOne({
         _id: req.params.listId,
         _userId: req.user_id

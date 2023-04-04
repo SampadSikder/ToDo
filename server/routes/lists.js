@@ -3,6 +3,16 @@ const router = express.Router();
 
 const { List, Task } = require("../models")
 
+const deleteTasksFromList = (_listId) => {
+    Task.deleteMany({
+        _listId
+    }).then(() => {
+        console.log("Tasks from " + _listId + " were deleted!");
+    })
+}
+
+
+
 router.get("/", async (req, res) => {
     await List.find().then((lists) => {
         res.json(lists);
@@ -10,6 +20,17 @@ router.get("/", async (req, res) => {
         res.send(e);
     });
 })
+
+router.get("/:id", async (req, res) => {
+    await List.findOne({
+        _id: req.params.id
+    }).then((lists) => {
+        res.json(lists);
+    }).catch((e) => {
+        res.send(e);
+    });
+})
+
 
 router.post("/", async (req, res) => {
     let title = req.body.title;
@@ -22,12 +43,14 @@ router.post("/", async (req, res) => {
 })
 
 router.patch("/:id", async (req, res) => {
+    console.log("edit")
     await List.findOneAndUpdate({ _id: req.params.id }, {
         $set: req.body
     }).then((response) => {
-        res.send("Updated!");
+        res.json("Updated!");
     });
 });
+
 
 router.delete('/:id', async (req, res) => {
 

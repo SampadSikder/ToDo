@@ -3,6 +3,7 @@
     <div class="centered-content">
         <div class="task-manager-container">
             <div class="sidebar bg-white">
+                <button class="btn mt-2 w-10" (click)="onLogout()"> Logout </button>
                 <h1 class="title text-info">
                     Lists
                 </h1>
@@ -26,23 +27,16 @@
                 <h1 class="title text-info">
                     Tasks
                 </h1>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Settings
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                        <div class="dropdown-content">
-                            <a class="dropdown-item">
-                                Edit
-                            </a>
-                            <a class="dropdown-item text-danger" (click)="onListDelete()">
-                                Delete
-                            </a>
-                        </div>
+                <div ngbDropdown class="ml-auto">
+                    <button class="btn btn-secondary" id="dropdownMenuButton" ngbDropdownToggle>Settings</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+                        <button ngbDropdownItem routerLink="./edit-list">Edit</button>
+                        <button ngbDropdownItem class="text-danger" (click)="onListDelete()">Delete</button>
                     </div>
                 </div>
+
+
                 <!-- Task elements-->
                 <div class="task" *ngFor="let task of tasks" [ngClass]="{'complete':task.completed}">
                     <p> {{task.title}}</p>
@@ -50,7 +44,7 @@
                         <pre>
                         <pre class="text-danger">Deadline:</pre>{{ task.dueDate | date:'yyyy-MM-dd hh:mm a' }}</pre>
                         <div class="buttons">
-                            <button class="edit-btn">Edit</button>
+                            <button class="edit-btn" [routerLink]="['./edit-task',task._id]">Edit</button>
                             <button class="delete-btn" (click)="onTaskDelete(task)">Delete</button>
                             <button class="done-btn" (click)="onTaskClick(task)">Done</button>
                         </div>

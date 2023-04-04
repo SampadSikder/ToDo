@@ -11,6 +11,8 @@
             <div class="row">
                 <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
                     <input class="input" #dateInput placeholder="Select Date" bsDatepicker [minDate]="minDate" />
+                    <timepicker #timeInput [showMeridian]="true" [(ngModel)]="selectedTime"></timepicker>
+
                 </div>
 
             </div>
@@ -18,7 +20,7 @@
         </div>
 
         <div class="buttons">
-            <button class="button is-success" (click)="createNewTask(titleInput.value,dateInput.value)">Save</button>
+            <button class="button is-success" (click)="createNewTask(titleInput.value, dateInput.value)">Save</button>
             <button class="button is-danger"> <a href="/task-view"
                     class="text-white text-decoration-none">Cancel</a></button>
         </div>

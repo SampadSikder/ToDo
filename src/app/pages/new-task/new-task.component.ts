@@ -3,6 +3,7 @@ import { OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Route, Router } from '@angular/router';
 import { TaskService } from 'src/app/task.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 @Component({
   selector: 'app-new-task',
   templateUrl: './new-task.component.html',
@@ -35,10 +36,16 @@ export class NewTaskComponent implements OnInit {
   }
 
   createNewTask(title: string, dueDate: string) {
-    const dateObj = new Date(dueDate);
+
+    const dateObj = new Date(Date.parse(dueDate));
+
+    dateObj.setHours(this.selectedTime.getHours());
+    dateObj.setMinutes(this.selectedTime.getMinutes());
+    dateObj.setSeconds(this.selectedTime.getSeconds());
+
+    console.log(dateObj);
     this.taskService.createTasks(title, this.id, dateObj).subscribe((response: any) => {
       this.router.navigate(['lists', response['_listId']]);
-    })
-
+    });
   }
 }

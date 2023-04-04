@@ -48,8 +48,7 @@
                     <p> {{task.title}}</p>
                     <div class="deadline">
                         <pre>
-                        <pre class="text-danger">Deadline:</pre>{{ task.dueDate | date:'yyyy-MM-dd' }}</pre>
-
+                        <pre class="text-danger">Deadline:</pre>{{ task.dueDate | date:'yyyy-MM-dd hh:mm a' }}</pre>
                         <div class="buttons">
                             <button class="edit-btn">Edit</button>
                             <button class="delete-btn" (click)="onTaskDelete(task)">Delete</button>

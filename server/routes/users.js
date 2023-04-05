@@ -10,12 +10,11 @@ const { List, Task, User } = require("../models");
 router.post('/signup', (req, res) => {
     // User sign up
 
+
     let body = req.body;
-    console.log(body);
     let newUser = new User(body);
-    console.log(newUser);
+
     newUser.save().then(() => {
-        console.log('kire')
         return newUser.createSession();
     }).then((refreshToken) => {
         // Session created successfully - refreshToken returned.

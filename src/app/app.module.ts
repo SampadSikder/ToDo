@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TaskEditComponent } from './pages/task-edit/task-edit.component';
 import { ListEditComponent } from './pages/list-edit/list-edit.component';
+import { SearchComponent } from './pages/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { ListEditComponent } from './pages/list-edit/list-edit.component';
     NewListComponent,
     NewTaskComponent,
     TaskEditComponent,
-    ListEditComponent
+    ListEditComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

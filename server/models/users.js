@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 1
+        minlength: 5
     },
     sessions: [{
         token: {
@@ -139,7 +139,29 @@ UserSchema.statics.hasRefreshTokenExpired = (expiresAt) => {
     }
 }
 
+UserSchema.statics.changePasswordByEmail = function (email, newPassword) {
+    let User = this;
+    return User.findOne({ email }).then((user) => {
+        console.log(user);
+        if (!user) {
+            throw new Error('User not found');
+        }
 
+        return new Promise((resolve, reject) => {
+            console.log(newPassword);
+
+
+            user.password = newPassword;
+            user.save().then(() => {
+                resolve(user);
+            }).catch((e) => {
+                reject(e);
+            })
+        })
+
+    })
+
+};
 /* MIDDLEWARE */
 // Before a user document is saved, this code runs
 UserSchema.pre('save', function (next) {

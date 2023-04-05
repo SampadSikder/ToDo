@@ -9,43 +9,57 @@
                         <form>
 
                             <div class="form-outline mb-4">
-                                <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
                                 <label class="form-label" for="form3Example1cg">Your Name</label>
+                                <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
                             </div>
 
                             <div class="form-outline mb-4">
+                                <label class="form-label" for="form3Example3cg">Your Email</label>
                                 <input #emailInput type="email" id="form3Example3cg"
                                     class="form-control form-control-lg" />
-                                <label class="form-label" for="form3Example3cg">Your Email</label>
                             </div>
 
                             <div class="form-outline mb-4">
-                                <input #pwInput type="password" id="form3Example4cg"
-                                    class="form-control form-control-lg" />
                                 <label class="form-label" for="form3Example4cg">Password</label>
+                                <input #pwInput [(ngModel)]="password" type="password" id="form3Example4cg"
+                                    class="form-control form-control-lg" name="password" />
                             </div>
 
                             <div class="form-outline mb-4">
-                                <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
                                 <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+                                <input #rpwInput [(ngModel)]="checkPassword" type="password" id="form3Example4cdg"
+                                    class="form-control form-control-lg" name="checkPassword" />
+                            </div>
+                            <div *ngIf="isValidPassword()">
+                                <p class="text-center mb-0 text-success">Password strength: Strong</p>
+                            </div>
+                            <div *ngIf="!isValidPassword()">
+                                <p class="text-center mb-0 text-danger">Password strength: Weak</p>
                             </div>
 
-                            <!-- <div class="form-check d-flex justify-content-center mb-5">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                                <label class="form-check-label" for="form2Example3g">
-                                    I agree all statements in <a href="#!" class="text-body"><u>Terms of
-                                            service</u></a>
-                                </label>
-                            </div> -->
-
-                            <div class="d-flex justify-content-center">
-                                <button type="button" (click)="onSignupButtonClicked(emailInput.value, pwInput.value)"
+                            <div class="d-flex justify-content-center mt-5">
+                                <button type="button" [disabled]="!isValidPassword() || !isMatchingPasswords()"
+                                    (click)="onSignupButtonClicked(emailInput.value)"
                                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
                             </div>
 
                             <p class="text-center mt-5 mb-0">Have already an account? <a href="/login"
                                     class="fw-bold text-body"><u>Login here</u></a></p>
 
+
+                            <div *ngIf="isRegistrationSuccessful">
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example4cdg">Enter OTP</label>
+                                    <input #otpInput type="text" id="form3Example4cdg"
+                                        class="form-control form-control-lg" name="otp" />
+                                </div>
+                                <div class="d-flex justify-content-center mt-5">
+                                    <button type="button"
+                                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                                        (click)="onVerifyOtpClicked(emailInput.value, pwInput.value, otpInput.value) ">Verify
+                                        OTP</button>
+                                </div>
+                            </div>
                         </form>
 
                     </div>

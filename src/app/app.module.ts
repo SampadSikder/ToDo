@@ -21,6 +21,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TaskEditComponent } from './pages/task-edit/task-edit.component';
 import { ListEditComponent } from './pages/list-edit/list-edit.component';
 import { SearchComponent } from './pages/search/search.component';
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { SearchComponent } from './pages/search/search.component';
     NewTaskComponent,
     TaskEditComponent,
     ListEditComponent,
-    SearchComponent
+    SearchComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,

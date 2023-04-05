@@ -37,6 +37,17 @@ export class AuthService {
     )
   }
 
+  sendOtp(email: string) {
+    return this.webService.post('otp/send-otp', { email });
+  }
+  verifyOtp(email: string, otp: number) {
+    return this.webService.post('otp/verify-otp', { email, otp });
+  }
+
+  changePassword(email: string, password: string) {
+    return this.webService.patch('user/change-password', { email, password });
+  }
+
 
 
   logout() {

@@ -1,11 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require('jsonwebtoken')
-
+const bcrypt = require('bcryptjs');
 const { List, Task, User } = require("../models");
-
-
-
 
 router.post('/signup', (req, res) => {
     // User sign up
@@ -39,7 +36,7 @@ router.post('/signup', (req, res) => {
 router.post('/login', (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
-
+    console.log(email, password);
     User.findByCredentials(email, password).then((user) => {
         return user.createSession().then((refreshToken) => {
             // Session created successfully - refreshToken returned.
@@ -120,11 +117,14 @@ router.get('/me/access-token', verifySession, (req, res) => {
     });
 })
 
+router.patch("/change-password", async (req, res) => {
+    const { email, password } = req.body;
+    console.log(req.body);
+    User.changePasswordByEmail(email, password).then((response) => {
+        res.json({ response });
+    });
 
-
-
-
-
+});
 
 
 

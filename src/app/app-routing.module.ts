@@ -7,6 +7,7 @@ import { NewListComponent } from './pages/new-list/new-list.component';
 import { NewTaskComponent } from './pages/new-task/new-task.component';
 import { TaskEditComponent } from './pages/task-edit/task-edit.component';
 import { ListEditComponent } from './pages/list-edit/list-edit.component';
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'edit-list', component: ListEditComponent },
   { path: 'lists/:listId/edit-task/:taskId', component: TaskEditComponent },
   { path: 'lists/:listId/edit-list', component: ListEditComponent },
+  { path: 'forgot-password', component: ForgetPasswordComponent }
 ];
 
 @NgModule({

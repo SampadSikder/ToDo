@@ -32,6 +32,9 @@ app.use("/lists", taskRouter);
 const userRouter = require("./routes/users");
 app.use("/user", userRouter);
 
+const otpRouter = require("./routes/otp");
+app.use("/otp", otpRouter);
+
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then((result) => {
     console.log("connected to db")
     app.listen(5050, () => {

@@ -1,10 +1,28 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
-const { List, Task } = require("../models");
+const { List, Task, User } = require("../models");
+
+let authenticate = (req, res, next) => {
+    let token = req.header('x-access-token');
+
+    // verify the JWT
+    jwt.verify(token, User.getJWTSecret(), (err, decoded) => {
+        if (err) {
+            // there was an error
+            // jwt is invalid - * DO NOT AUTHENTICATE *
+            res.status(401).send(err);
+        } else {
+            // jwt is valid
+            req.user_id = decoded._id;
+            next();
+        }
+    });
+}
 
 
-router.get("/:listId/tasks", async (req, res) => {
+router.get("/:listId/tasks", authenticate, async (req, res) => {
     await Task.find({
         _listId: req.params.listId
     }).then((response) => {
@@ -20,7 +38,7 @@ router.get("/:listId/tasks/:taskId", async (req, res) => {
     });
 });
 
-router.post('/:listId/tasks', async (req, res) => {
+router.post('/:listId/tasks', authenticate, async (req, res) => {
     await List.findOne({
         _id: req.params.listId,
         _userId: req.user_id
@@ -46,7 +64,7 @@ router.post('/:listId/tasks', async (req, res) => {
     })
 });
 
-router.patch('/:listId/tasks/:taskId', async (req, res) => {
+router.patch('/:listId/tasks/:taskId', authenticate, async (req, res) => {
     await List.findOne({
         _id: req.params.listId,
         _userId: req.user_id
@@ -72,10 +90,10 @@ router.patch('/:listId/tasks/:taskId', async (req, res) => {
     })
 });
 
-router.delete('/:listId/tasks/:taskId', async (req, res) => {
+router.delete('/:listId/tasks/:taskId', authenticate, async (req, res) => {
     await List.findOne({
         _id: req.params.listId,
-        //_userId: req.user_id
+        _userId: req.user_id
     }).then((list) => {
         if (list) {
             return true;

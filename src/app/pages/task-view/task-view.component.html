@@ -6,14 +6,12 @@
                 Lists
             </h1>
 
-            <div class="search">
-                <input type="text" placeholder="Search...">
-                <button class="btn">Search</button>
-            </div>
+
             <div class="list-menu">
+                <app-search (searchTextChange)="onListSearchTextEntered($event)"></app-search>
                 <a class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists',list._id]"
                     routerLinkActive="is-active">
-                    <p>{{list.title}}</p>
+                    <p *ngIf="searchList===''||list.title.toLowerCase().includes(searchList)">{{list.title}}</p>
                 </a>
             </div>
 
@@ -22,10 +20,29 @@
 
         </div>
         <div class=" task-list-container bg-light">
+
+            <div ngbDropdown class="mt-2 w-10">
+                <button class="btn btn-secondary" id="dropdownMenuButton" ngbDropdownToggle>About</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+                    <div class="task normal">
+                        <p>More than 7 days</p>
+                    </div>
+                    <div class="task warning">
+                        <p>Less than 7 days</p>
+                    </div>
+                    <div class="task urgent">
+                        <p>Less than one day</p>
+                    </div>
+                    <div class="task overdue">
+                        <p>Overdue!</p>
+                    </div>
+                </div>
+            </div>
             <button class="logout-btn mt-2 w-10" (click)="onLogout()"> Logout </button>
             <h1 class="title text-info">
                 Tasks
             </h1>
+
 
             <div ngbDropdown class="ml-auto">
                 <button class="btn btn-secondary" id="dropdownMenuButton" ngbDropdownToggle>Settings</button>
@@ -35,11 +52,20 @@
                 </div>
             </div>
 
+            <app-search (searchTextChange)="onTaskSearchTextEntered($event)"></app-search>
 
             <!-- Task elements-->
-            <div class="task" *ngFor="let task of tasks" [ngClass]="{'complete':task.completed}">
-                <p> {{task.title}}</p>
-                <div class="deadline">
+            <!-- <div class="task" *ngFor="let task of tasks" [ngClass]="{'complete':task.completed} ||getTaskClass(task)"
+                [ngClass]="getTaskClass(task)"> -->
+            <div class="task" *ngFor="let task of tasks" [ngClass]="{'complete': task.completed, 
+                'overdue': getTaskClass(task) === 'overdue',
+                'urgent': getTaskClass(task) === 'urgent',
+                'warning': getTaskClass(task) === 'warning',
+                'normal': getTaskClass(task) === 'normal'
+            }">
+
+                <p *ngIf="searchTask===''||task.title.toLowerCase().includes(searchTask)"> {{task.title}}</p>
+                <div class="deadline" *ngIf="searchTask===''||task.title.toLowerCase().includes(searchTask)">
                     <pre>
                         <pre class="text-danger">Deadline:</pre>{{ task.dueDate | date:'yyyy-MM-dd hh:mm a' }}</pre>
                     <div class="buttons">
@@ -49,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary "> <a routerLink="./new-task" class=" text-white text-decoration-none">+
+            <button class="btn btn-primary mt-2"> <a routerLink="./new-task" class=" text-white text-decoration-none">+
                     New Task</a> </button>
         </div>
 

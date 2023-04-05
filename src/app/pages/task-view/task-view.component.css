@@ -99,20 +99,6 @@
     align-items: center;
 }
 
-.search {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.search input {
-    width: 100%;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    outline: none;
-}
 
 .task:not(.complete) {
     cursor: pointer;
@@ -176,11 +162,27 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* background-color: #f0d1cc; */
 }
 
-.deadline {
-    text-align: right;
+.task.overdue {
+    background-color: rgba(233, 36, 36, 0.5);
+    color: black;
 }
+
+.task.urgent {
+    background-color: rgba(245, 171, 13, 0.4);
+    color: red;
+}
+
+.task.warning {
+    background-color: rgba(255, 255, 198, 0.8);
+}
+
+.task.normal {
+    background-color: white;
+}
+
 
 .edit-btn,
 .delete-btn,
@@ -200,8 +202,27 @@ h1 {
     color: #fff;
 }
 
-.task.complete .edit-btn,
-.task.complete .done-btn {
+.task.overdue.complete .edit-btn,
+.task.overdue.complete .done-btn {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.task.urgent.complete .edit-btn,
+
+.task.urgent.complete .done-btn {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.task.warning.complete .edit-btn,
+.task.warning.complete .done-btn {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.task.normal.complete .edit-btn,
+.task.normal.complete .done-btn {
     pointer-events: none;
     opacity: 0.5;
 }

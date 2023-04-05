@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 import { TaskService } from 'src/app/task.service';
 
 @Component({
@@ -11,9 +12,12 @@ export class TaskViewComponent implements OnInit {
 
   lists: any;
   tasks: any;
-  constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router) {
+  constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router, private authService: AuthService) {
 
   }
+
+  searchList: string = '';
+  searchTask: string = '';
 
   ngOnInit() {
     try {
@@ -40,6 +44,13 @@ export class TaskViewComponent implements OnInit {
       console.log(lists);
     })
   }
+  onListSearchTextEntered(searchValue: string) {
+    this.searchList = searchValue;
+  }
+
+  onTaskSearchTextEntered(searchValue: string) {
+    this.searchTask = searchValue;
+  }
 
   selectedListId(): string {
     let id: string = '';
@@ -50,6 +61,20 @@ export class TaskViewComponent implements OnInit {
     return id;
   }
 
+  getTaskClass(task: any): string {
+    let dueDate = new Date(task.dueDate);
+
+    const timeRemaining = dueDate.getTime() - new Date().getTime();
+    if (timeRemaining < 0) {
+      return 'overdue';
+    } else if (timeRemaining < 24 * 60 * 60 * 1000) {
+      return 'urgent';
+    } else if (timeRemaining < 3 * 24 * 60 * 60 * 1000) {
+      return 'warning';
+    } else {
+      return 'normal';
+    }
+  }
   onTaskClick(task: any) {
     let id: string = '';
     this.route.params.subscribe((params: Params) => {
@@ -101,6 +126,7 @@ export class TaskViewComponent implements OnInit {
   }
 
   onLogout() {
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 

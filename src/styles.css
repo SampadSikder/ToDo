@@ -1,7 +1,12 @@
 @import '../node_modules/@syncfusion/ej2-material-theme/styles/material.css';
-body {
+/* body {
     background-image: url("login-bg.jpg");
     background-size: 100%;
     background-size: cover;
     background-repeat: no-repeat;
+} */
+
+body {
+    background: url("login-bg.jpg") no-repeat center center fixed;
+    background-size: cover;
 }

@@ -35,6 +35,7 @@ export class SignupComponent implements OnInit {
       if (response.message === 'OTP verified successfully') {
         this.authService.signup(email, password).subscribe((res: HttpResponse<any>) => {
           console.log(res);
+          alert('Account Created Successfully')
           this.router.navigate(['/login']);
         });
       } else {
